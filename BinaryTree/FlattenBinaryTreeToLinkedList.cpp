@@ -11,6 +11,7 @@
  */
 class Solution {
 public:
+    //this is a preorder Traversal 
     TreeNode*prev = nullptr;
 
     void createLinkedList(TreeNode* curr){
