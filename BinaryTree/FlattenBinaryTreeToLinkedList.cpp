@@ -32,3 +32,61 @@ public:
         createLinkedList(root);
     }
 };
+
+
+//========================================================
+//Inorder
+
+class Solution {
+public:
+    TreeNode* prev = nullptr;
+
+    void createLinkedListInOrder(TreeNode* curr) {
+        if (!curr) return;
+
+        // Process the left subtree
+        createLinkedListInOrder(curr->left);
+
+        // Process the current node
+        if (prev) {
+            prev->left = nullptr;
+            prev->right = curr;
+        }
+        prev = curr;
+
+        // Process the right subtree
+        createLinkedListInOrder(curr->right);
+    }
+
+    void flatten(TreeNode* root) {
+        createLinkedListInOrder(root);
+    }
+};
+
+//=================================================================
+//postOrder
+class Solution {
+public:
+    TreeNode* prev = nullptr;
+
+    void createLinkedListPostOrder(TreeNode* curr) {
+        if (!curr) return;
+
+        // Process the left subtree
+        createLinkedListPostOrder(curr->left);
+
+        // Process the right subtree
+        createLinkedListPostOrder(curr->right);
+
+        // Process the current node
+        if (prev) {
+            curr->left = nullptr;
+            curr->right = prev;
+        }
+        prev = curr;
+    }
+
+    void flatten(TreeNode* root) {
+        createLinkedListPostOrder(root);
+    }
+};
